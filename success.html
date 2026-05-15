@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Order Confirmed — Komaura Beauty</title>
+<meta name="description" content="Your Komaura order is confirmed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232A1F1F'/%3E%3Ctext x='50%25' y='58%25' font-family='Cormorant Garamond, serif' font-size='18' fill='%23FAF7F4' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div data-include="navbar"></div>
+
+<main>
+  <section class="success">
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+    <div class="container">
+      <div class="checkmark">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M12 24l8 8 16-18" stroke="#C9847A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="script" style="font-size:2rem">Thank you</span>
+      <h1 style="margin:14px auto 12px; max-width:680px">Your nails are on their way 💅</h1>
+      <p style="max-width:520px; margin:0 auto 24px">We've sent a confirmation to your email. Komal will hand-make your set in the next few days.</p>
+      <div id="order-summary" style="max-width:480px; margin:30px auto; text-align:left; border:1px solid var(--line); border-radius:12px; padding:24px; background:var(--white)"></div>
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+        <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+        <a href="https://wa.me/918302501203" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp Komal</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div data-include="footer"></div>
+
+<script type="module" src="js/main.js"></script>
+<script>
+// Confetti
+const c = document.getElementById('confetti');
+const colors = ['#C9847A','#F2D9D0','#9E6B6B','#C8C0BB'];
+for (let i=0; i<40; i++) {
+  const i_ = document.createElement('i');
+  i_.style.left = Math.random()*100 + 'vw';
+  i_.style.background = colors[i%4];
+  i_.style.animationDelay = (Math.random()*2)+'s';
+  i_.style.animationDuration = (3 + Math.random()*3)+'s';
+  c.appendChild(i_);
+}
+// Order summary
+try {
+  const o = JSON.parse(sessionStorage.getItem('komaura_last_order')||'null');
+  if (o) {
+    document.getElementById('order-summary').innerHTML = `
+      <div style="font-size:.74rem; letter-spacing:.22em; text-transform:uppercase; color:var(--mauve); margin-bottom:8px">Order ${o.id.slice(0,14)}</div>
+      <div style="font-family:var(--f-display); font-size:1.3rem; margin-bottom:14px">For ${o.customer.name}</div>
+      <div style="font-size:.92rem; color:var(--ink-soft); margin-bottom:14px">${o.customer.address}, ${o.customer.city}, ${o.customer.state} ${o.customer.pincode}</div>
+      <div style="display:flex; justify-content:space-between; padding-top:14px; border-top:1px solid var(--line); font-family:var(--f-display); font-size:1.2rem"><span>Total Paid</span><span>₹${o.total.toLocaleString('en-IN')}</span></div>`;
+  } else {
+    document.getElementById('order-summary').style.display = 'none';
+  }
+} catch {}
+</script>
+</body>
+</html>

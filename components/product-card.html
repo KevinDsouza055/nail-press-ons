@@ -1,0 +1,16 @@
+<!-- Reusable product card markup template (rendered dynamically by js/products.js) -->
+<article class="card">
+  <a class="card__media" href="product.html?id={{id}}">
+    <img class="a" src="{{image}}" alt="{{name}}" loading="lazy" decoding="async">
+    <img class="b" src="{{imageHover}}" alt="" loading="lazy" decoding="async">
+  </a>
+  <button class="card__heart" data-wishlist="{{id}}"></button>
+  <button class="card__quick" data-quick="{{id}}">Quick Add</button>
+  <div class="card__cat">{{category}}</div>
+  <h3 class="card__name">{{name}}</h3>
+  <div class="card__tag">{{tagline}}</div>
+  <div class="card__row">
+    <div class="card__price">{{price}}</div>
+    <div class="card__rating">{{rating}}</div>
+  </div>
+</article>

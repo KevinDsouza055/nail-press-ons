@@ -1,0 +1,78 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <h3>Komaura</h3>
+        <p>Handmade soft gel press-ons, crafted by Komal Joshi in her Jodhpur atelier. Reusable. Customizable. Quietly luxurious.</p>
+        <h4 style="margin-top:24px">Newsletter</h4>
+        <form class="footer__news" onsubmit="event.preventDefault(); window.komauraToast && window.komauraToast('Welcome to the list ✓','success'); this.reset();">
+          <input type="email" required placeholder="Your email address" aria-label="Email">
+          <button type="submit">Join</button>
+        </form>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="shop.html">All Sets</a>
+        <a href="shop.html?category=Bridal">Bridal</a>
+        <a href="shop.html?category=Nude">Nude</a>
+        <a href="shop.html?category=Chrome">Chrome</a>
+        <a href="shop.html?category=Custom">Custom</a>
+      </div>
+      <div>
+        <h4>Atelier</h4>
+        <a href="about.html">Our Story</a>
+        <a href="about.html#process">Process</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="https://wa.me/918302501203" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:hello@komaura.in">hello@komaura.in</a>
+        <a href="contact.html">Jodhpur, India</a>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span>© 2026 Komaura Beauty. All rights reserved.</span>
+      <span>Made by hand in Jodhpur · Shipped worldwide</span>
+    </div>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/918302501203" target="_blank" rel="noopener" aria-label="WhatsApp us">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.4 17l-1.4 5 5.2-1.4a11 11 0 0 0 5 1.3h.1A11 11 0 0 0 20.5 3.5zm-8.4 17h0a9 9 0 0 1-4.6-1.3l-.3-.2-3.1.8.8-3-.2-.3a9 9 0 1 1 16.7-4.7 9 9 0 0 1-9.3 8.7zm5-6.7c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.2-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.1-.3-.2-.6-.3z"/></svg>
+  <span class="wa-float__tip">Chat with Komal</span>
+</a>
+<button class="totop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- Cart drawer -->
+<div class="drawer-back" id="drawer-back" data-close-drawer></div>
+<aside class="drawer" id="drawer" aria-label="Shopping bag">
+  <div class="drawer__head">
+    <h3>Your Bag</h3>
+    <button data-close-drawer aria-label="Close bag" style="font-size:.78rem;letter-spacing:.2em;text-transform:uppercase">Close</button>
+  </div>
+  <div class="drawer__body" id="drawer-body"></div>
+  <div class="drawer__foot" id="drawer-foot">
+    <div class="drawer__row"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
+    <div class="drawer__row"><span>Shipping</span><span>Calculated at checkout</span></div>
+    <div class="drawer__row total"><span>Total</span><span id="cart-total">₹0</span></div>
+    <a href="checkout.html" class="btn btn-primary" style="width:100%">Proceed to Checkout</a>
+  </div>
+</aside>
+
+<!-- Search overlay -->
+<div class="search-overlay" id="search" role="dialog" aria-label="Search">
+  <div class="container" style="max-width:1100px; margin:0 auto; width:100%; display:flex; justify-content:space-between; align-items:center">
+    <span class="eyebrow">Search the Atelier</span>
+    <button class="search-overlay__close" data-close-search>Close ✕</button>
+  </div>
+  <div class="search-overlay__bar">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="search-input" type="text" placeholder="Try ‘bridal’, ‘chrome’, ‘rouge’…" autocomplete="off">
+  </div>
+  <div class="search-recent" id="search-recent"></div>
+  <div class="search-results" id="search-results"></div>
+</div>

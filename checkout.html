@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Checkout — Komaura Beauty</title>
+<meta name="description" content="Secure checkout for your Komaura Beauty order. UPI, cards, net banking, and wallets via Razorpay.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232A1F1F'/%3E%3Ctext x='50%25' y='58%25' font-family='Cormorant Garamond, serif' font-size='18' fill='%23FAF7F4' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="preloader"><div class="preloader__mark">Komaura</div></div>
+<div data-include="navbar"></div>
+
+<main>
+  <section class="page-hero" style="padding-bottom:20px">
+    <div class="container">
+      <span class="eyebrow reveal">Secure Checkout</span>
+      <h1 class="reveal" data-delay="1">Almost <em style="font-style:italic;color:var(--rose-deep)">yours.</em></h1>
+    </div>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="container co-grid">
+      <form id="co-form" class="form reveal" novalidate>
+        <h3 style="font-family:var(--f-display); font-size:1.4rem; margin-bottom:18px">Contact</h3>
+        <div class="field"><label>Name</label><input name="name" required maxlength="80"></div>
+        <div class="co-row">
+          <div class="field"><label>Email</label><input name="email" type="email" required maxlength="120"></div>
+          <div class="field"><label>Phone</label><input name="phone" type="tel" required maxlength="14" placeholder="10-digit number"></div>
+        </div>
+
+        <h3 style="font-family:var(--f-display); font-size:1.4rem; margin:32px 0 18px">Shipping address</h3>
+        <div class="field"><label>Address</label><input name="address" required maxlength="200"></div>
+        <div class="co-row">
+          <div class="field"><label>City</label><input name="city" required maxlength="60"></div>
+          <div class="field"><label>State</label><input name="state" required maxlength="60"></div>
+        </div>
+        <div class="co-row">
+          <div class="field"><label>Pincode</label><input name="pincode" required maxlength="10"></div>
+          <div class="field"><label>Country</label><input name="country" value="India" required maxlength="60"></div>
+        </div>
+
+        <button type="submit" id="co-pay" class="btn btn-primary" style="width:100%; padding:20px; margin-top:18px">Pay Securely</button>
+        <p style="font-size:.78rem; color:var(--mauve); text-align:center; margin-top:14px; letter-spacing:.14em; text-transform:uppercase">Powered by Razorpay · Test mode</p>
+      </form>
+
+      <aside class="co-summary reveal" data-delay="1">
+        <h3 style="font-family:var(--f-display); font-size:1.4rem">Your order</h3>
+        <div id="co-summary-lines"></div>
+        <div class="line" style="border:none"><span>Subtotal</span><span id="co-subtotal">₹0</span></div>
+        <div class="line" style="border:none"><span>Shipping</span><span id="co-shipping">—</span></div>
+        <div class="line total" style="border:none; justify-content:space-between"><span>Total</span><span id="co-total">₹0</span></div>
+
+        <div class="co-trust">
+          <div>✦ Secure checkout</div>
+          <div>✦ Handmade</div>
+          <div>✦ Ships worldwide</div>
+          <div>✦ Reusable</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<div data-include="footer"></div>
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/checkout.js"></script>
+</body>
+</html>

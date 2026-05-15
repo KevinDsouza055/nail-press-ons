@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FAQ — Komaura Beauty</title>
+<meta name="description" content="Answers to common questions about ordering, sizing, shipping, and applying Komaura Beauty press-on nails.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232A1F1F'/%3E%3Ctext x='50%25' y='58%25' font-family='Cormorant Garamond, serif' font-size='18' fill='%23FAF7F4' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="preloader"><div class="preloader__mark">Komaura</div></div>
+<div data-include="navbar"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow reveal">Help & Care</span>
+      <h1 class="reveal" data-delay="1">Frequently <em style="font-style:italic;color:var(--rose-deep)">asked.</em></h1>
+      <p class="reveal" data-delay="2">Still curious? Message Komal directly on WhatsApp — she answers herself.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="container">
+      <div class="faq-tabs reveal" id="faq-tabs">
+        <button class="chip is-active" data-tab="ordering">Ordering</button>
+        <button class="chip" data-tab="shipping">Shipping</button>
+        <button class="chip" data-tab="sizing">Sizing</button>
+        <button class="chip" data-tab="application">Application</button>
+      </div>
+      <div class="faq-wrap acc" id="faq"></div>
+    </div>
+  </section>
+</main>
+
+<div data-include="footer"></div>
+<script type="module" src="js/main.js"></script>
+<script>
+const FAQ = {
+  ordering: [
+    ['How do I place an order?','Add the set to your bag, choose your size, and check out securely. For custom or bridal pieces, message Komal directly on WhatsApp.'],
+    ['Do you offer COD?','We do not. Each set is made to order, so we accept secure online payment only — UPI, cards, wallets, or net banking via Razorpay.'],
+    ['Can I cancel or change my order?','Yes, within 6 hours of ordering. After that we have already begun making your set.'],
+  ],
+  shipping: [
+    ['When will my order ship?','Made to order in 3–5 business days. Bridal sets in 5–7 days.'],
+    ['Do you ship internationally?','Yes — DHL or Aramex tracked, 4–8 business days depending on destination.'],
+    ['How much is shipping?','Complimentary on orders over ₹1,500 within India. Calculated at checkout for all other addresses.'],
+  ],
+  sizing: [
+    ['How do I find my size?','Order our complimentary sizing kit, or message us on WhatsApp with a clear photo of your nails next to a ruler.'],
+    ['Can I customise the length and shape?','Absolutely — choose almond, coffin, or square at checkout, and add notes in the custom field.'],
+    ['What if a tip doesn\'t fit?','Message us within 7 days of delivery. We will replace any tip that doesn\'t fit, free of charge.'],
+  ],
+  application: [
+    ['How long do they last?','Up to 3 weeks of wear with proper application. Each set is reusable up to 4 times.'],
+    ['Will they damage my natural nails?','No. Soft gel is lighter than acrylic and lifts off cleanly with the included cuticle stick.'],
+    ['How do I store them between wears?','Lift gently, place back in the original tray, and store away from direct heat. Avoid soaking in oils.'],
+  ],
+};
+const wrap = document.getElementById('faq');
+function render(tab) {
+  wrap.innerHTML = FAQ[tab].map(([q,a]) => `
+    <div class="acc__item">
+      <button class="acc__head">${q}<span class="plus"></span></button>
+      <div class="acc__body"><div>${a}</div></div>
+    </div>`).join('');
+  wrap.querySelectorAll('.acc__head').forEach(h => h.addEventListener('click', () => {
+    const item = h.parentElement;
+    const body = item.querySelector('.acc__body');
+    const open = item.classList.toggle('open');
+    body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+  }));
+}
+document.querySelectorAll('#faq-tabs .chip').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#faq-tabs .chip').forEach(x => x.classList.remove('is-active'));
+  b.classList.add('is-active');
+  render(b.dataset.tab);
+}));
+render('ordering');
+</script>
+</body>
+</html>

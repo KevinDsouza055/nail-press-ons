@@ -1,0 +1,67 @@
+/* ===== Tablet ===== */
+@media (max-width: 1024px) {
+  .hero__grid,
+  .story__grid,
+  .about-grid,
+  .contact-grid,
+  .co-grid,
+  .pdp__grid {
+    grid-template-columns: 1fr;
+  }
+  .pdp__grid > .pdp__gallery { order: 1; }
+  .pdp__grid > .pdp__info { order: 2; }
+  .t-grid { grid-template-columns: 1fr 1fr; }
+  .insta__row { grid-template-columns: repeat(4, 1fr); }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .counters__grid { grid-template-columns: repeat(2, 1fr); }
+  .about-vals { grid-template-columns: 1fr; }
+  .co-summary { position: static; }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 720px) {
+  body { padding-bottom: 70px; }
+  .nav__links { display: none; }
+  .nav__inner { grid-template-columns: 1fr auto; }
+  .nav__icons { display: none; }
+  .mob-nav { display: block; }
+  .totop { left: auto; right: 22px; bottom: 88px; }
+  .wa-float { right: 16px; bottom: 84px; width: 52px; height: 52px; }
+  .wa-float__tip { display: none; }
+
+  .hero__art { aspect-ratio: 1; max-width: 480px; margin: 0 auto; }
+  .hero__art img { border-radius: 16px; }
+  .hero__art .float-tag { display: none; }
+
+  .t-grid { grid-template-columns: 1fr; }
+  .insta__row { grid-template-columns: repeat(3, 1fr); }
+  .footer__grid { grid-template-columns: 1fr; }
+  .footer__base { flex-direction: column; }
+  .counters__grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  .product-grid { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
+  .card__name { font-size: 1.1rem; }
+
+  .pdp__gallery { grid-template-columns: 1fr; }
+  .pdp__thumbs { flex-direction: row; overflow-x: auto; order: 2; }
+  .pdp__thumbs button { width: 64px; }
+  .pdp-stick { display: flex; }
+  .pdp__cta { display: none; }
+
+  .co-row { grid-template-columns: 1fr; }
+  .tl-item { grid-template-columns: 1fr; gap: 6px; }
+
+  .values__row { gap: 28px; }
+  .values__row span { font-size: 0.92rem; }
+
+  .nav__brand { font-size: 1.2rem; }
+
+  .toasts { top: auto; bottom: 100px; right: 16px; left: 16px; }
+  .toast { min-width: 0; }
+}
+
+@media (max-width: 420px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .insta__row { grid-template-columns: repeat(2, 1fr); }
+  .hero__cta .btn { width: 100%; }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact — Komaura Beauty</title>
+<meta name="description" content="Get in touch with Komaura Beauty. WhatsApp, Instagram, or email Komal directly from her Jodhpur atelier.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232A1F1F'/%3E%3Ctext x='50%25' y='58%25' font-family='Cormorant Garamond, serif' font-size='18' fill='%23FAF7F4' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="preloader"><div class="preloader__mark">Komaura</div></div>
+<div data-include="navbar"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow reveal">Get in Touch</span>
+      <h1 class="reveal" data-delay="1">Talk to <em style="font-style:italic;color:var(--rose-deep)">Komal.</em></h1>
+      <p class="reveal" data-delay="2">For custom orders, bridal appointments, and everything in between.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:40px">
+    <div class="container contact-grid">
+      <div class="contact-info reveal">
+        <div class="item"><h4>WhatsApp</h4><p style="margin:0"><a href="https://wa.me/918302501203" target="_blank" rel="noopener" style="color:var(--rose-deep)">+91 83025 01203</a> · the fastest way</p></div>
+        <div class="item"><h4>Instagram</h4><p style="margin:0"><a href="https://instagram.com/" target="_blank" rel="noopener" style="color:var(--rose-deep)">@komaura.beauty</a></p></div>
+        <div class="item"><h4>Email</h4><p style="margin:0"><a href="mailto:hello@komaura.in" style="color:var(--rose-deep)">hello@komaura.in</a></p></div>
+        <div class="item"><h4>Atelier</h4><p style="margin:0">Jodhpur, Rajasthan, India · By appointment only</p></div>
+        <div class="item" style="border:none"><h4>Hours</h4><p style="margin:0">Mon–Sat · 11am–7pm IST</p></div>
+      </div>
+      <form class="form reveal" data-delay="1" onsubmit="event.preventDefault(); window.komauraToast && window.komauraToast('Message sent ✓','success'); this.reset();">
+        <div class="field"><label for="c-name">Your name</label><input id="c-name" required maxlength="80"></div>
+        <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" required maxlength="120"></div>
+        <div class="field"><label for="c-subject">Subject</label>
+          <select id="c-subject"><option>General enquiry</option><option>Custom order</option><option>Bridal appointment</option><option>Press / collaboration</option></select>
+        </div>
+        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" rows="6" required maxlength="1000"></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div data-include="footer"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

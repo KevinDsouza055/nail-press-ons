@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Product — Komaura Beauty</title>
+<meta name="description" content="Handmade soft gel press-on nail set from the Komaura atelier in Jodhpur.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232A1F1F'/%3E%3Ctext x='50%25' y='58%25' font-family='Cormorant Garamond, serif' font-size='18' fill='%23FAF7F4' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="preloader"><div class="preloader__mark">Komaura</div></div>
+<div data-include="navbar"></div>
+
+<main>
+  <section class="pdp">
+    <div class="container">
+      <div class="pdp__grid" id="pdp">
+        <div class="pdp__gallery">
+          <div class="pdp__thumbs"><div class="skeleton" style="width:88px; aspect-ratio:1"></div></div>
+          <div class="pdp__main skeleton"></div>
+        </div>
+        <div class="pdp__info"><div class="skeleton" style="height:300px"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">You may also love</span>
+        <h2>From the same edit.</h2>
+      </div>
+      <div class="product-grid" id="related"></div>
+    </div>
+  </section>
+</main>
+
+<div class="pdp-stick" id="pdp-stick">
+  <button class="btn btn-primary" id="pdp-add-mob" style="flex:1">Add to Bag</button>
+  <a href="https://wa.me/918302501203" class="btn pdp__wa" target="_blank" rel="noopener" style="flex:1">WhatsApp</a>
+</div>
+
+<div data-include="footer"></div>
+
+<script type="module" src="js/main.js"></script>
+<script type="module">
+  import { loadProducts, renderGrid, formatPrice } from './js/products.js';
+  import { cart, bindWishlistButtons, bindQuickAdd } from './js/cart.js';
+  import { initReveals } from './js/animations.js';
+  import { recent } from './js/cart.js';
+  import { getQuery } from './js/router.js';
+
+  const id = getQuery('id') || 'nude-rose';
+
+  (async () => {
+    const all = await loadProducts();
+    const p = all.find(x => x.id === id) || all[0];
+    recent.push(p.id);
+    document.title = p.name + ' — Komaura Beauty';
+
+    const pdp = document.getElementById('pdp');
+    const imgs = [p.image, p.imageHover, p.image].filter(Boolean);
+    pdp.innerHTML = `
+      <div class="pdp__gallery">
+        <div class="pdp__thumbs" id="thumbs">
+          ${imgs.map((src,i)=>`<button class="${i===0?'is-active':''}" data-i="${i}"><img src="${src}" alt=""></button>`).join('')}
+        </div>
+        <div class="pdp__main" id="main"><img id="main-img" src="${p.image}" alt="${p.name}"></div>
+      </div>
+      <div class="pdp__info">
+        <div class="pdp__cat">${p.category}</div>
+        <h1 class="pdp__title">${p.name}</h1>
+        <div class="pdp__sub">${p.tagline}</div>
+        <div class="pdp__price">${p.compareAt?`<s>${formatPrice(p.compareAt)}</s>`:''}${formatPrice(p.price)}</div>
+        <div class="pdp__rating">★ ${p.rating.toFixed(1)} · ${p.reviews} reviews · Inclusive of all taxes</div>
+        <p>${p.description}</p>
+
+        <div class="pdp__section">
+          <span class="label">Shape</span>
+          <div class="pdp__sizes" id="shapes">
+            ${p.shapes.map((s,i)=>`<button class="${i===0?'is-active':''}" data-shape="${s}">${s}</button>`).join('')}
+          </div>
+        </div>
+        <div class="pdp__section">
+          <span class="label">Size — <a href="#" data-acc-jump style="color:var(--rose-deep)">size guide</a></span>
+          <div class="pdp__sizes" id="sizes">
+            ${p.sizes.map((s,i)=>`<button class="${i===1?'is-active':''}" data-size="${s}">${s}</button>`).join('')}
+          </div>
+        </div>
+        <div class="pdp__section">
+          <span class="label">Custom sizing notes (optional)</span>
+          <input id="custom-notes" placeholder="e.g. ring finger one size up" style="width:100%; padding:14px 16px; border:1px solid var(--line-strong); border-radius:8px; background:var(--white)">
+        </div>
+        <div class="pdp__section">
+          <span class="label">Quantity</span>
+          <div class="pdp__qty">
+            <button id="q-dec" aria-label="Decrease">−</button>
+            <span id="q-val">1</span>
+            <button id="q-inc" aria-label="Increase">+</button>
+          </div>
+        </div>
+
+        <div class="pdp__cta">
+          <button class="btn btn-primary" id="pdp-add" style="flex:1; min-width:200px">Add to Bag — ${formatPrice(p.price)}</button>
+          <a href="https://wa.me/918302501203?text=Hi%20Komal%2C%20I%27d%20like%20to%20order%20${encodeURIComponent(p.name)}" target="_blank" rel="noopener" class="btn pdp__wa">WhatsApp Order</a>
+        </div>
+
+        <div class="pdp__perks">
+          <div><strong>Made to order</strong>Ships in 3–5 days</div>
+          <div><strong>Worldwide</strong>Tracked shipping</div>
+          <div><strong>Reusable</strong>Up to 4 cycles</div>
+        </div>
+
+        <div class="acc" id="acc" style="margin-top:40px">
+          ${[
+            ['Shipping','Made to order in 3–5 business days. Shipped via tracked courier within India and DHL/Aramex worldwide.'],
+            ['Size Guide','XS fits petite nail beds; S fits average; M is most popular; L for wider beds. Order our complimentary sizing kit if unsure.'],
+            ['Reuse Guide','Lift gently with cuticle stick, store in original tray. Avoid soaking in oils. Up to four cycles per set with care.'],
+            ['Care Instructions','Apply with provided glue on a clean dry nail. Avoid hot water for two hours. Pat dry after washing.'],
+            ['No COD Policy','We do not offer cash on delivery on made-to-order pieces. Secure online payment only — UPI, cards, wallets, net banking.']
+          ].map(([t,b])=>`
+            <div class="acc__item">
+              <button class="acc__head">${t}<span class="plus"></span></button>
+              <div class="acc__body"><div>${b}</div></div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+
+    // Gallery
+    const mainImg = document.getElementById('main-img');
+    document.querySelectorAll('#thumbs button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('#thumbs button').forEach(x => x.classList.remove('is-active'));
+      b.classList.add('is-active');
+      mainImg.src = imgs[+b.dataset.i];
+    }));
+    document.getElementById('main').addEventListener('click', (e) => e.currentTarget.classList.toggle('zoom'));
+
+    // Variants & qty
+    let qty = 1;
+    const qVal = document.getElementById('q-val');
+    document.getElementById('q-inc').onclick = () => { qty++; qVal.textContent = qty; };
+    document.getElementById('q-dec').onclick = () => { if (qty>1){ qty--; qVal.textContent = qty; } };
+    let size = p.sizes[1] || p.sizes[0];
+    let shape = p.shapes[0];
+    document.querySelectorAll('#sizes button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('#sizes button').forEach(x=>x.classList.remove('is-active'));
+      b.classList.add('is-active'); size = b.dataset.size;
+      window.komauraToast && window.komauraToast('Size ' + size + ' selected ✓');
+    }));
+    document.querySelectorAll('#shapes button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('#shapes button').forEach(x=>x.classList.remove('is-active'));
+      b.classList.add('is-active'); shape = b.dataset.shape;
+    }));
+
+    function add() {
+      cart.add(p.id, { size, shape, qty });
+      window.komauraToast && window.komauraToast('Added to bag ✓','success');
+    }
+    document.getElementById('pdp-add').onclick = add;
+    document.getElementById('pdp-add-mob').onclick = add;
+
+    // Accordion
+    document.querySelectorAll('.acc__head').forEach(h => h.addEventListener('click', () => {
+      const item = h.parentElement;
+      const body = item.querySelector('.acc__body');
+      const open = item.classList.toggle('open');
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+    }));
+
+    // Related
+    const related = all.filter(x => x.id !== p.id && x.category === p.category).slice(0, 4);
+    const fill = related.length < 4 ? all.filter(x => x.id !== p.id && !related.includes(x)).slice(0, 4 - related.length) : [];
+    const relWrap = document.getElementById('related');
+    renderGrid(relWrap, [...related, ...fill]);
+    bindWishlistButtons(relWrap); bindQuickAdd(relWrap); initReveals(relWrap);
+  })();
+</script>
+</body>
+</html>
