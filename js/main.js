@@ -46,10 +46,22 @@ function initToTop() {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
+// ---------- Mobile Nav Menu ----------
+function toggleMobNav(open) {
+  const d = document.getElementById('mob-nav-drawer');
+  const b = document.getElementById('mob-nav-back');
+  if (!d || !b) return;
+  d.style.transform = open ? 'translateX(0)' : 'translateX(-100%)';
+  b.classList.toggle('show', open);
+  document.body.classList.toggle('no-scroll', open);
+}
+
 // ---------- Bind drawer / search triggers ----------
 function bindGlobal() {
   document.querySelectorAll('[data-open-drawer]').forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); openDrawer(); }));
   document.querySelectorAll('[data-close-drawer]').forEach(b => b.addEventListener('click', closeDrawer));
+  document.querySelectorAll('[data-open-mob-nav]').forEach(b => b.addEventListener('click', () => toggleMobNav(true)));
+  document.querySelectorAll('[data-close-mob-nav]').forEach(b => b.addEventListener('click', () => toggleMobNav(false)));
   document.querySelectorAll('[data-open-search]').forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); openSearch(); }));
   document.querySelectorAll('[data-close-search]').forEach(b => b.addEventListener('click', closeSearch));
 

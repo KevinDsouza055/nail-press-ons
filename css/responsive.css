@@ -11,6 +11,7 @@
   .pdp__grid > .pdp__gallery { order: 1; }
   .pdp__grid > .pdp__info { order: 2; }
   .t-grid { grid-template-columns: 1fr 1fr; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
   .insta__row { grid-template-columns: repeat(4, 1fr); }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .counters__grid { grid-template-columns: repeat(2, 1fr); }
@@ -20,13 +21,14 @@
 
 /* ===== Mobile ===== */
 @media (max-width: 720px) {
-  body { padding-bottom: 70px; }
+  body { padding-bottom: 0; } /* Removed redundant padding */
   .nav__links { display: none; }
-  .nav__inner { grid-template-columns: 1fr auto; }
+  .nav__inner { grid-template-columns: auto 1fr auto; }
   .nav__icons { display: none; }
+  .nav__burger { display: flex; }
   .mob-nav { display: block; }
-  .totop { left: auto; right: 22px; bottom: 88px; }
-  .wa-float { right: 16px; bottom: 84px; width: 52px; height: 52px; }
+  .totop { left: 20px; right: auto; bottom: 120px; width: 42px; height: 42px; }
+  .wa-float { right: 20px; bottom: 120px; width: 50px; height: 50px; }
   .wa-float__tip { display: none; }
 
   .hero__art { aspect-ratio: 1; max-width: 480px; margin: 0 auto; }
@@ -35,13 +37,14 @@
 
   .t-grid { grid-template-columns: 1fr; }
   .insta__row { grid-template-columns: repeat(3, 1fr); }
+  .footer { padding-bottom: 110px; } /* This padding ensures footer content clears the mob-nav */
   .footer__grid { grid-template-columns: 1fr; }
   .footer__base { flex-direction: column; }
   .counters__grid { grid-template-columns: 1fr 1fr; gap: 28px; }
 
-  .product-grid { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
+  .product-grid { grid-template-columns: 1fr 1fr !important; gap: 16px; }
   .card__name { font-size: 1.1rem; }
-
+do
   .pdp__gallery { grid-template-columns: 1fr; }
   .pdp__thumbs { flex-direction: row; overflow-x: auto; order: 2; }
   .pdp__thumbs button { width: 64px; }

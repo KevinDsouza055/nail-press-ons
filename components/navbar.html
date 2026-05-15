@@ -12,6 +12,10 @@
 </div>
 <header class="nav" id="nav">
   <div class="container nav__inner">
+    <button class="nav__burger" data-open-mob-nav aria-label="Open menu">
+      <span></span>
+      <span></span>
+    </button>
     <a class="nav__brand" href="index.html" aria-label="Komaura Beauty home">
       Komaura <small>·beauty</small>
     </a>
@@ -38,12 +42,68 @@
     </div>
   </div>
 </header>
+
+<!-- Side Drawer for Hamburger Menu -->
+<div class="drawer-back" id="mob-nav-back" data-close-mob-nav></div>
+<div class="drawer" id="mob-nav-drawer" style="left:0; right:auto; transform:translateX(-100%);">
+  <div class="drawer__head">
+    <span class="eyebrow">Menu</span>
+    <button class="icon-btn" data-close-mob-nav>&times;</button>
+  </div>
+  <div class="drawer__body" style="display:flex; flex-direction:column; justify-content:space-between; height:calc(100% - 80px); padding-bottom:40px;">
+    <ul class="mob-drawer-links" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:24px;">
+      <li><a href="index.html" style="font-family:var(--f-display); font-size:2rem; color:var(--ink);">Home</a></li>
+      <li><a href="shop.html" style="font-family:var(--f-display); font-size:2rem; color:var(--ink);">Shop All</a></li>
+      <li><a href="index.html#vibes" style="font-family:var(--f-display); font-size:2rem; color:var(--ink);">Collections</a></li>
+      <li><a href="about.html" style="font-family:var(--f-display); font-size:2rem; color:var(--ink);">Atelier Story</a></li>
+      <li><a href="#" data-open-drawer data-close-mob-nav style="font-family:var(--f-display); font-size:2rem; color:var(--ink);">Shopping Bag</a></li>
+      <li><hr style="border:none; border-top:1px solid var(--line); margin:10px 0;"></li>
+      <li><a href="contact.html" style="font-family:var(--f-body); font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--mauve);">Track Order</a></li>
+      <li><a href="faq.html" style="font-family:var(--f-body); font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--mauve);">Help & FAQ</a></li>
+      <li><a href="contact.html" style="font-family:var(--f-body); font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--mauve);">Sizing Guide</a></li>
+      <li><a href="contact.html" style="font-family:var(--f-body); font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--mauve);">Contact Us</a></li>
+    </ul>
+
+    <div class="mob-drawer-footer">
+      <div style="display:flex; gap:20px; margin-bottom:20px;">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--ink)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://wa.me/918302501203" target="_blank" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--ink)" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L21 3z"></path></svg>
+        </a>
+      </div>
+      <p style="font-size:0.75rem; color:var(--muted); margin:0;">&copy; 2024 Komaura Beauty</p>
+    </div>
+  </div>
+</div>
+
+<!-- Cart Drawer (The missing view) -->
+<div class="drawer-back" id="drawer-back" data-close-drawer></div>
+<div class="drawer" id="drawer">
+  <div class="drawer__head">
+    <h3 style="font-family:var(--f-display)">Your Bag</h3>
+    <button class="icon-btn" data-close-drawer aria-label="Close bag">&times;</button>
+  </div>
+  <div class="drawer__body" id="drawer-body">
+    <!-- Products are injected here by cart.js -->
+  </div>
+  <div class="drawer__foot" id="drawer-foot">
+    <div class="drawer__row"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
+    <div class="drawer__row total"><span>Total</span><span id="cart-total">₹0</span></div>
+    <a href="checkout.html" class="btn btn-primary" style="width:100%">Proceed to Checkout</a>
+    <p style="text-align:center; font-size:0.7rem; color:var(--mauve); margin-top:12px; text-transform:uppercase; letter-spacing:0.1em">
+      Shipping calculated at checkout
+    </p>
+  </div>
+</div>
+
 <nav class="mob-nav" aria-label="Mobile">
   <ul class="mob-nav__list">
-    <li><a data-link href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11 12 4l9 7v9h-6v-6H9v6H3z"/></svg>Home</a></li>
-    <li><a data-link href="shop.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16l-1 13H5zM8 7a4 4 0 0 1 8 0"/></svg>Shop</a></li>
+    <li><a data-link href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</a></li>
+    <li><a data-link href="shop.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Shop</a></li>
     <li><a href="#" data-open-search><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search</a></li>
-    <li><a href="#" data-open-drawer><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21H4l1.5-13h13zM8 8a4 4 0 0 1 8 0"/></svg>Bag</a></li>
-    <li><a data-link href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>Account</a></li>
+    <li><a data-link href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>Wish</a></li>
+    <li><a href="#" data-open-drawer><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Bag</a></li>
   </ul>
 </nav>

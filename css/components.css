@@ -133,18 +133,37 @@
 }
 .cart-badge.is-on { transform: scale(1); }
 
-.nav__burger { display: none; }
+/* ---------- Hamburger Menu ---------- */
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  z-index: 70;
+}
+.nav__burger span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.3s var(--ease);
+}
+.nav__burger span:last-child { width: 14px; }
 
 /* ---------- Mobile bottom nav ---------- */
 .mob-nav {
   display: none;
   position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(250, 247, 244, 0.94);
-  backdrop-filter: blur(14px);
-  border-top: 1px solid var(--line);
-  z-index: 55;
-  padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+  bottom: 20px; 
+  left: 20px; 
+  right: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 40px;
+  z-index: 999;
+  padding: 10px 16px;
+  box-shadow: 0 15px 45px rgba(42, 31, 31, 0.1);
 }
 .mob-nav__list {
   display: grid;
@@ -177,24 +196,29 @@
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding-top: clamp(40px, 6vw, 80px);
-  padding-bottom: clamp(60px, 8vw, 120px);
+  padding-top: clamp(100px, 12vw, 160px);
+  padding-bottom: clamp(100px, 12vw, 160px);
   background:
-    radial-gradient(900px 600px at 85% 25%, var(--blush-soft), transparent 60%),
-    radial-gradient(700px 500px at 10% 90%, rgba(242, 217, 208, 0.5), transparent 60%),
-    var(--cream);
+    radial-gradient(circle at 85% 15%, var(--blush-soft), transparent 50%),
+    radial-gradient(circle at 15% 85%, rgba(201, 132, 122, 0.15), transparent 50%),
+    radial-gradient(circle at 50% 50%, #ffffff, var(--cream));
   overflow: hidden;
 }
 .hero__grid {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(60px, 8vw, 120px);
   align-items: center;
 }
-.hero__copy .eyebrow { margin-bottom: 22px; }
+.hero__copy {
+  max-width: 640px;
+  padding-right: 40px;
+}
+.hero__copy .eyebrow { margin-bottom: 24px; color: var(--rose-deep); }
 .hero__title {
-  font-size: clamp(2.8rem, 6.6vw, 5.6rem);
+  font-size: clamp(3.2rem, 7.5vw, 6.2rem);
   letter-spacing: -0.015em;
+  line-height: 0.95;
 }
 .hero__title em {
   font-style: italic;
@@ -203,13 +227,14 @@
 .hero__title .script {
   display: block;
   font-size: 0.66em;
-  margin-top: -4px;
-  margin-left: -8px;
+  margin-top: -0.2em;
+  margin-left: 0.1em;
+  color: var(--rose);
 }
 .hero__sub {
-  margin: 28px 0 36px;
+  margin: 36px 0 48px;
   max-width: 460px;
-  font-size: 1.06rem;
+  font-size: 1.1rem;
 }
 .hero__cta {
   display: flex; gap: 14px; flex-wrap: wrap;
@@ -234,22 +259,25 @@
   inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  border-radius: 220px 220px 24px 24px;
+  border-radius: 300px 300px 40px 40px;
   box-shadow: var(--shadow-lift);
-  animation: floatY 7s ease-in-out infinite;
+  animation: floatY 8s ease-in-out infinite;
+  border: 8px solid var(--white);
 }
 .hero__art .float-tag {
   position: absolute;
-  background: var(--white);
-  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 16px 24px;
   border-radius: 999px;
   box-shadow: var(--shadow-soft);
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink);
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 12px;
   animation: floatY 5s ease-in-out infinite;
+  border: 1px solid rgba(255,255,255,0.5);
 }
 .hero__art .float-tag.t1 { top: 10%; left: -8%; animation-delay: 0.4s; }
 .hero__art .float-tag.t2 { bottom: 14%; right: -6%; animation-delay: 1.2s; }
@@ -312,8 +340,8 @@
 /* ---------- Product grid + card ---------- */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: clamp(20px, 2.6vw, 36px) clamp(16px, 2vw, 28px);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3vw, 40px) clamp(16px, 2vw, 32px);
 }
 
 .card {
@@ -353,24 +381,40 @@
 .card__heart svg { width: 16px; height: 16px; stroke: var(--ink); fill: none; stroke-width: 1.6; transition: fill var(--t-fast) var(--ease); }
 .card__heart.is-on svg { fill: var(--rose-deep); stroke: var(--rose-deep); }
 
-.card__quick {
-  position: absolute;
-  inset: auto 12px 12px;
-  padding: 12px;
-  background: var(--ink);
-  color: var(--cream);
-  border-radius: 999px;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--t-base) var(--ease), transform var(--t-base) var(--ease), background var(--t-fast) var(--ease);
-  z-index: 2;
+.card__content {
+  padding: 4px 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.card:hover .card__quick { opacity: 1; transform: translateY(0); }
-.card__quick:hover { background: var(--rose-deep); }
+
+.card__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  opacity: 1;
+  transform: none;
+  transition: transform var(--t-fast);
+}
+
+.card__btn {
+  flex: 1;
+  height: 38px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  transition: all var(--t-fast) var(--ease);
+}
+.card__btn--buy { background: var(--ink); color: var(--cream); }
+.card__btn--add { 
+  background: transparent; 
+  border: 1px solid var(--ink); 
+  color: var(--ink);
+}
+.card__btn--buy:hover { background: var(--rose-deep); }
+.card__btn--add:hover { background: var(--ink); color: var(--cream); }
 
 .card__cat { font-size: 0.66rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--mauve); margin-bottom: 6px; }
 .card__name { font-family: var(--f-display); font-size: 1.35rem; line-height: 1.1; margin-bottom: 4px; }
@@ -676,7 +720,8 @@
 .drawer {
   position: fixed; top: 0; right: 0; bottom: 0;
   width: min(440px, 92vw);
-  background: var(--cream);
+  background: rgba(250, 247, 244, 0.95);
+  backdrop-filter: blur(20px);
   z-index: 95;
   transform: translateX(100%);
   transition: transform 420ms var(--ease);
@@ -738,10 +783,7 @@
 
 /* ---------- Preloader ---------- */
 .preloader {
-  position: fixed; inset: 0; z-index: 200;
-  background: var(--cream);
-  display: flex; align-items: center; justify-content: center;
-  transition: opacity 480ms var(--ease), visibility 480ms;
+  display: none !important;
 }
 .preloader.done { opacity: 0; visibility: hidden; }
 .preloader__mark {

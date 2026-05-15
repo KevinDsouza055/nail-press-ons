@@ -133,4 +133,11 @@ export function bindQuickAdd(root = document) {
       toast('Added to bag ✓', 'success');
     });
   });
+  root.querySelectorAll('[data-buy-now]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      cart.add(btn.dataset.buyNow, { size: 'M' });
+      window.location.href = 'checkout.html';
+    });
+  });
 }
